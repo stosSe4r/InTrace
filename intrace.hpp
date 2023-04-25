@@ -25,6 +25,7 @@ struct _it_func_call {
 
 // TODO: support multi-thread environment
 struct {
+    bool display_timestamp = true;
     std::deque<_it_func_call> cs; // call relation, should be a stack
 } _InTrace_data;
 
@@ -41,15 +42,19 @@ public:
 };
 
 
-// TODO: add configuration for not displaying time stamp
+// TODO: add configuration for not displaying timestamp
 std::string print_trace() {
     std::stringstream result;
     result << "Trace from " << _InTrace_data.cs.back().fn << "\n";
     std::string nest_level = "";
     for(auto trace : _InTrace_data.cs) {
         auto fn_time = std::chrono::system_clock::to_time_t(trace.prolog);
-        result << "[" << std::put_time(std::localtime(&fn_time), "%Y/%m/%d %T") << "] " << nest_level << trace.fn << '\n';
-        if(nest_level.length()<10) nest_level += "-";
+        if (_InTrace_data.display_timestamp)
+            result << "[" << std::put_time(std::localtime(&fn_time), "%Y/%m/%d %T") << "] " << nest_level << trace.fn << '\n';
+        else
+            result << nest_level << trace.fn << '\n';
+        if (nest_level.length() < 10)
+            nest_level += "-";
     }
     result << "\n";
     return result.str();
