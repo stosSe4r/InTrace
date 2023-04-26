@@ -5,4 +5,4 @@ Intrusive runtime function call/dependency tracing lib, wip.
 
 Include `intrace.hpp`, add `InTraced;` at the beginning of functions to be traced, then the calling relations between those functions are all recorded.
 
-Call `InTrace::print_trace()` to see what's going on.
+Call `std::cout << InTrace::print_trace();` to see what's going on.
