@@ -43,7 +43,7 @@ public:
 
 
 // TODO: add configuration for not displaying timestamp
-std::string print_trace() {
+std::string get_trace() {
     std::stringstream result;
     result << "Trace from " << _InTrace_data.cs.back().fn << "\n";
     std::string nest_level = "";

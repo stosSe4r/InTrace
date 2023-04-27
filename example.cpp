@@ -6,7 +6,7 @@ void g();
 
 void g() {
     InTraced;
-    std::cout << InTrace::print_trace();
+    std::cout << InTrace::get_trace();
     //f();
 }
 
@@ -19,5 +19,5 @@ void f() {
 int main() {
     InTraced;
     f();
-    std::cout << InTrace::print_trace();
+    std::cout << InTrace::get_trace();
 }
